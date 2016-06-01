@@ -103,5 +103,4 @@ var basket = {
         return bogofTotal;
     }
 };
-
 module.exports = basket;
