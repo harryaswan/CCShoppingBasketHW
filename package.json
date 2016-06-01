@@ -1,6 +1,6 @@
 {
   "name": "harryaswan_shopping",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "the ultimate shopping basket",
   "main": "basket.js",
   "dependencies": {

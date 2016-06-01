@@ -41,5 +41,4 @@ describe('Shopping Basket', function(){
         // total = 21.69
         assert.equal(4.68, basket.total(true));
     });
-
 });
