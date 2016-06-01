@@ -1,0 +1,13 @@
+{
+  "name": "shopping_basket",
+  "version": "1.0.0",
+  "description": "the ultimate shopping basket",
+  "main": "basket.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha specs"
+  },
+  "author": "",
+  "license": "ISC"
+}
