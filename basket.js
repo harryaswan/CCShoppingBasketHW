@@ -23,8 +23,15 @@ var basket = {
         }
     },
     remove: function(item) {
-        var i = this.items.lastIndexOf(item);
-        this.items.splice(i, 1);
+        for (var i = 0; i < this.items.length; i++) {
+            if (this.items[i].item === item) {
+                if (this.items[i].quantity > 1) {
+                    this.items[i].quantity -= 1;
+                } else {
+                    this.items.splice(i, 1);
+                }
+            }
+        }
     },
     total: function(withBOGOF) {
         var total = 0;

@@ -10,10 +10,10 @@ describe('Shopping Basket', function(){
         assert.equal(0, basket.quantity());
     });
     it('Add an item to the basket', function(){
-        basket.add(items[0]);
+        basket.add(items[0],items[0]);
         assert.equal(1, basket.quantity());
     });
-    it('Add an item to the basket', function(){
+    it('Remove an item to the basket', function(){
         basket.remove(items[0]);
         assert.equal(0, basket.quantity());
     });
