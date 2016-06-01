@@ -7,15 +7,19 @@ var basket = {
         this.items = [];
     },
     quantity: function() {
-        return this.items.length;
+        var qty = 0;
+        for (var i = 0; i < this.items.length; i++) {
+            qty += this.items[i].quantity;
+        }
+        return qty;
     },
     add: function(item) {
         if (item instanceof Array) {
             for (var i = 0; i < item.length; i++) {
-                this.items.push(item[i]);
+                this.putInToList(item[i]);
             }
         } else {
-            this.items.push(item);
+            this.putInToList(item);
         }
     },
     remove: function(item) {
@@ -28,7 +32,7 @@ var basket = {
             total = this.checkForBOGOF();
         } else {
             for (var i =0; i < this.items.length; i++) {
-                total += this.items[i].price;
+                total += (this.items[i].item.price * this.items[i].quantity);
             }
         }
         if (total>20) {
@@ -50,32 +54,31 @@ var basket = {
             }
         }
     },
-    checkForBOGOF: function() {
-        var itemsCount = [];
-        var checkItems = function (item) {
-            for (var i = 0; i < itemsCount.length; i++) {
-                if (itemsCount[i].obj === item) {
-                    return i;
-                }
-            }
-            return -1;
-        };
+    putInToList: function(itemObj) {
+        var itemIndex = this.findItemIndex(itemObj);
+        if (itemIndex > -1) {
+            this.items[itemIndex].quantity += 1;
+        } else {
+            this.items.push({item:itemObj, quantity: 1});
+        }
+    },
+    findItemIndex: function(item) {
         for (var i = 0; i < this.items.length; i++) {
-            var iCI = checkItems(this.items[i]);
-            if (iCI > -1) {
-                itemsCount[iCI].quantity += 1;
-            } else {
-                itemsCount.push({obj:this.items[i], quantity: 1});
+            if (this.items[i].item === item) {
+                return i;
             }
         }
+        return -1;
+    },
+    checkForBOGOF: function() {
         var bogofTotal = 0;
-        for (i = 0; i < itemsCount.length; i++) {
-            // var remainder = itemsCount[i].quantity % 2;
-            if (itemsCount[i].quantity % 2 === 0) {
-                bogofTotal += (itemsCount[i].obj.price * (itemsCount[i].quantity/2));
+        for (i = 0; i < this.items.length; i++) {
+            // var remainder = (this.items[i].quantity % 2;
+            if (this.items[i].quantity % 2 === 0) {
+                bogofTotal += (this.items[i].item.price * (this.items[i].quantity/2));
             } else {
-                bogofTotal += (itemsCount[i].obj.price * ((itemsCount[i].quantity-1)/2));
-                bogofTotal += (itemsCount[i].obj.price);
+                bogofTotal += (this.items[i].item.price * ((this.items[i].quantity-1)/2));
+                bogofTotal += (this.items[i].item.price);
             }
         }
         return bogofTotal;
