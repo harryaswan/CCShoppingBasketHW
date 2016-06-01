@@ -10,12 +10,15 @@ describe('Shopping Basket', function(){
         assert.equal(0, basket.quantity());
     });
     it('Add an item to the basket', function(){
-        basket.add(items[0],items[0]);
+        basket.add(items[0]);
         assert.equal(1, basket.quantity());
+        basket.add([items[0], items[1]]);
+        assert.equal(3, basket.quantity());
     });
     it('Remove an item to the basket', function(){
+        basket.add([items[0], items[0], items[1]]);
         basket.remove(items[0]);
-        assert.equal(0, basket.quantity());
+        assert.equal(2, basket.quantity());
     });
     it('Get the total value of the basket', function(){
         basket.add([items[0],items[1],items[2]]);

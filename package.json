@@ -1,13 +1,29 @@
 {
-  "name": "shopping_basket",
-  "version": "1.0.0",
+  "name": "harryaswan_shopping",
+  "version": "1.0.1",
   "description": "the ultimate shopping basket",
   "main": "basket.js",
-  "dependencies": {},
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "mocha specs"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "harryaswan",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harryaswan/CCShoppingBasketHW.git"
+  },
+  "keywords": [
+    "shopping",
+    "basket",
+    "harryaswan"
+  ],
+  "bugs": {
+    "url": "https://github.com/harryaswan/CCShoppingBasketHW/issues"
+  },
+  "homepage": "https://github.com/harryaswan/CCShoppingBasketHW#readme"
 }

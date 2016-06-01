@@ -5,6 +5,7 @@ var basket = {
     discountCard: null,
     empty: function() {
         this.items = [];
+        return null;
     },
     quantity: function() {
         var qty = 0;
@@ -17,21 +18,27 @@ var basket = {
         if (item instanceof Array) {
             for (var i = 0; i < item.length; i++) {
                 this.putInToList(item[i]);
+                return true;
             }
         } else {
             this.putInToList(item);
+            return true;
         }
+        return false;
     },
     remove: function(item) {
         for (var i = 0; i < this.items.length; i++) {
             if (this.items[i].item === item) {
                 if (this.items[i].quantity > 1) {
                     this.items[i].quantity -= 1;
+                    return true;
                 } else {
                     this.items.splice(i, 1);
+                    return true;
                 }
             }
         }
+        return false;
     },
     total: function(withBOGOF) {
         var total = 0;
@@ -58,8 +65,10 @@ var basket = {
             numberChar = Number.parseInt(numberChar);
             if (numberChar) {
                 this.discountCard = cardString;
+                return true;
             }
         }
+        return false;
     },
     putInToList: function(itemObj) {
         var itemIndex = this.findItemIndex(itemObj);
@@ -68,6 +77,7 @@ var basket = {
         } else {
             this.items.push({item:itemObj, quantity: 1});
         }
+        return null;
     },
     findItemIndex: function(item) {
         for (var i = 0; i < this.items.length; i++) {
